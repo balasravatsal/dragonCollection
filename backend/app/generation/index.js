@@ -5,6 +5,7 @@ const refreshRate = REFRESH_RATE * SECOND
 class Index {
     constructor() {
         this.expiration = this.calculateExpiration()
+        this.generationId = undefined
     }
 
     calculateExpiration () {
@@ -21,7 +22,7 @@ class Index {
         if(Date.now() > this.expiration) {
             throw new Error(`This generation has been expired on ${this.expiration}`)
         }
-        return new Dragon()
+        return new Dragon({generationId: this.generationId})
     }
 }
 
